@@ -1,25 +1,17 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
+#include <iostream>
 
 int main() {
-	try {
-		Bureaucrat a1("Alice", 42);
-		std::cout << a1 << std::endl;
-		Bureaucrat b1("Bob", 150);
-		std::cout << b1 << std::endl;
-		Bureaucrat c1("Charles", 1);
-		std::cout << c1 << std::endl;
+    Bureaucrat alice("Alice", 50);
+    Form f1("Permit-A", 60, 30); // OK
+    Form f2("Permit-B", 40, 30); // KO
 
-		a1.incrementGrade();
-		std::cout << "After increment: " << a1 << std::endl;
+    std::cout << f1 << "\n" << f2 << "\n";
 
-		b1.decrementGrade();
-		std::cout << "After decrement: " << b1 << std::endl;
+    alice.signForm(f1); // attendu: "Alice signed Permit-A"
+    alice.signForm(f2); // attendu: "Alice couldn’t sign Permit-B because Form: grade too low"
 
-		c1.incrementGrade();
-		std::cout << "After increment: " << c1 << std::endl;
-	}
-	catch (std::exception& e) {
-		std::cerr << "Exception: " << e.what() << std::endl;
-	}
-	return 0;
+    std::cout << f1 << "\n" << f2 << "\n";
+    return 0;
 }
