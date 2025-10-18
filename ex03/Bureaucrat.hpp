@@ -5,6 +5,8 @@
 #include <string>
 #include <exception>
 
+class AForm;
+
 class Bureaucrat {
 	private:
 		const std::string name;
@@ -21,6 +23,8 @@ class Bureaucrat {
 
 		void incrementGrade();
 		void decrementGrade();
+		void signForm(class AForm& form);
+		void executeForm(AForm const & form) const;
 
 		class GradeTooHighException : public std::exception {
 			public:
